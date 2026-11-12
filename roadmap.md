@@ -17,6 +17,7 @@
 - [x] Derive favicon (16/32/48 .ico + 64 png), 192/512 any-purpose, 512 maskable and 180 apple-touch icons from the supplied e-Learning Platform logo, each padded so phone icon masks never clip the ring.
 - [x] Point the manifest, its shortcuts, the page head and the browser icon file at the new artwork.
 - [x] Verify every icon link and manifest entry resolves in the live page and run icon checks: 3 new tests pass, 169 total pass, build OK.
+
 # Bookshelf size on the homepage
 - [x] Enlarge the four class shelves so they use the room they were leaving empty, while all four still fit one screen without scrolling.
 - [x] Keep the last book cover clear of the floating WhatsApp button on phones.
