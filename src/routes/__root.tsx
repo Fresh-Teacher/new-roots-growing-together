@@ -18,8 +18,8 @@ import { Toaster } from '@/components/ui/sonner';
 import { CookieNotice } from '@/components/cookie-notice';
 import { InstallPrompt } from '@/components/install-prompt';
 import { earlyTapQueueScript } from '@/lib/early-tap-queue';
-import appIcon from '../../public/icons/fresh-icon-192.png.asset.json';
-import appleIcon from '../../public/icons/fresh-apple-touch-icon.png.asset.json';
+import appIcon from '../../public/icons/icon-192.png.asset.json';
+import appleIcon from '../../public/icons/apple-touch-icon.png.asset.json';
 
 function NotFoundComponent() {
   return (
