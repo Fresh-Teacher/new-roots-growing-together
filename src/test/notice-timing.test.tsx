@@ -21,7 +21,7 @@ it('waits five minutes on the site and avoids overlapping the cookie notice', ()
   render(<><CookieNotice /><InstallPrompt /></>);
   eligible();
   expect(screen.getByRole('dialog', { name: 'Cookie notice' })).toBeTruthy();
-  advance(300_000);
+  advance(40_000);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
   fireEvent.click(screen.getByRole('button', { name: 'Accept all' }));
   advance(420);
@@ -41,7 +41,7 @@ it('waits exactly five minutes even when cookie consent was saved on an earlier 
   localStorage.setItem('ft-cookie-consent', 'accepted');
   render(<InstallPrompt />);
   eligible();
-  advance(299_999);
+  advance(39_999);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
   advance(1);
   expect(screen.getByRole('dialog', { name: 'Install the Fresh App' })).toBeTruthy();
@@ -51,14 +51,14 @@ it('remembers a completed installation and hides the offer on returning browser 
   localStorage.setItem('ft-cookie-consent', 'accepted');
   const first = render(<InstallPrompt />);
   eligible();
-  advance(300_000);
+  advance(40_000);
   act(() => { window.dispatchEvent(new Event('appinstalled')); });
   advance(420);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
   first.unmount();
   render(<InstallPrompt />);
   eligible();
-  advance(300_000);
+  advance(40_000);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
   expect(localStorage.getItem('ft-app-installed')).toBe('1');
 });
@@ -68,7 +68,7 @@ it('never offers installation when already running as an installed app', () => {
   vi.stubGlobal('matchMedia', vi.fn(() => ({ matches: true, addEventListener: vi.fn(), removeEventListener: vi.fn() })));
   render(<InstallPrompt />);
   eligible();
-  advance(300_000);
+  advance(40_000);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
   expect(localStorage.getItem('ft-app-installed')).toBe('1');
 });
@@ -77,18 +77,18 @@ it('does not count time in a hidden tab toward the five-minute delay', () => {
   localStorage.setItem('ft-cookie-consent', 'accepted');
   render(<InstallPrompt />);
   eligible();
-  advance(100_000);
+  advance(10_000);
   act(() => {
     vi.spyOn(document, 'visibilityState', 'get').mockReturnValue('hidden');
     document.dispatchEvent(new Event('visibilitychange'));
   });
-  advance(600_000);
+  advance(80_000);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
   act(() => {
     vi.spyOn(document, 'visibilityState', 'get').mockReturnValue('visible');
     document.dispatchEvent(new Event('visibilitychange'));
   });
-  advance(199_999);
+  advance(29_999);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
   advance(1);
   expect(screen.getByRole('dialog', { name: 'Install the Fresh App' })).toBeTruthy();
@@ -99,11 +99,11 @@ it('keeps the elapsed site time through navigation or reload', () => {
   localStorage.setItem('ft-cookie-consent', 'accepted');
   const first = render(<InstallPrompt />);
   eligible();
-  advance(120_000);
+  advance(15_000);
   first.unmount();
   render(<InstallPrompt />);
   eligible();
-  advance(179_999);
+  advance(24_999);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
   advance(1);
   expect(screen.getByRole('dialog', { name: 'Install the Fresh App' })).toBeTruthy();
@@ -112,7 +112,7 @@ it('keeps the elapsed site time through navigation or reload', () => {
 it('does not offer installation when the browser has no native or Safari installation option', () => {
   localStorage.setItem('ft-cookie-consent', 'accepted');
   render(<InstallPrompt />);
-  advance(300_000);
+  advance(40_000);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
 });
 
@@ -120,29 +120,29 @@ it('respects Not Interested on future visits', () => {
   localStorage.setItem('ft-cookie-consent', 'accepted');
   const first = render(<InstallPrompt />);
   eligible();
-  advance(300_000);
+  advance(40_000);
   fireEvent.click(screen.getByRole('button', { name: 'Not Interested' }));
   advance(420);
   first.unmount();
   render(<InstallPrompt />);
   eligible();
-  advance(300_000);
+  advance(40_000);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
 });
 
-it('snoozes installation offers for three days', () => {
+it('snoozes installation offers for seven days', () => {
   localStorage.setItem('ft-cookie-consent', 'accepted');
   const first = render(<InstallPrompt />);
   eligible();
-  advance(300_000);
+  advance(40_000);
   const now = Date.now();
   fireEvent.click(screen.getByRole('button', { name: 'Remind me later' }));
-  expect(Number(localStorage.getItem('ft-install-snooze-until'))).toBe(now + 3 * 24 * 60 * 60 * 1000);
+  expect(Number(localStorage.getItem('ft-install-snooze-until'))).toBe(now + 7 * 24 * 60 * 60 * 1000);
   advance(420);
   first.unmount();
   render(<InstallPrompt />);
   eligible();
-  advance(300_000);
+  advance(40_000);
   expect(screen.queryByRole('dialog', { name: 'Install the Fresh App' })).toBeNull();
 });
 
@@ -153,7 +153,7 @@ it('uses the browser prompt and remembers an accepted installation', async () =>
   const prompt = vi.fn().mockResolvedValue(undefined);
   Object.assign(event, { prompt, userChoice: Promise.resolve({ outcome: 'accepted' }) });
   act(() => { window.dispatchEvent(event); });
-  advance(300_000);
+  advance(40_000);
   await act(async () => { fireEvent.click(screen.getByRole('button', { name: 'Install now' })); });
   expect(prompt).toHaveBeenCalledOnce();
   expect(localStorage.getItem('ft-app-installed')).toBe('1');
