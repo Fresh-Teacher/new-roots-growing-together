@@ -12,3 +12,8 @@
 - [x] Match the install prompt to the cookie notice and use the supplied image.
 - [x] Replace browser and installed-app icons with optimized versions of the supplied image.
 - [x] Verify the prompt on phone and desktop and run installation checks: 12 tests pass, images load, and installation controls work without runtime errors.
+
+# Supplied logo as app icon
+- [x] Derive favicon (16/32/48 .ico + 64 png), 192/512 any-purpose, 512 maskable and 180 apple-touch icons from the supplied e-Learning Platform logo, each padded so phone icon masks never clip the ring.
+- [x] Point the manifest, its shortcuts, the page head and the browser icon file at the new artwork.
+- [x] Verify every icon link and manifest entry resolves in the live page and run icon checks: 3 new tests pass, 169 total pass, build OK.
