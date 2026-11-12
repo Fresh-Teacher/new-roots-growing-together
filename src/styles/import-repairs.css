@@ -47,8 +47,8 @@ a.africaVotesChat { z-index: 2002; }
 .library-homepage .covers { max-width: none; display: flex; justify-content: center; align-items: flex-end; gap: 1%; }
 .library-homepage .bookshelf .thumb { width: 21% !important; max-width: 175px; margin: 0; }
 .library-homepage .shelf-img { display: block; width: 100%; margin-top: -8px; }
-@media (max-width: 359px) {
-  /* Keep the last book clear of the floating WhatsApp icon on narrow phones. */
+@media (max-width: 430px) {
+  /* Keep the last book clear of the floating WhatsApp icon on phones. */
   .library-homepage .bookshelf { margin-left: 0; }
 }
 @media (min-width: 768px) {
