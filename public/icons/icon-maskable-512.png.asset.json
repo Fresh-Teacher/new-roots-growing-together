@@ -1,11 +1,11 @@
 {
-  "asset_id": "69afaa96-b34d-444b-b856-67fc310a6a82",
-  "content_type": "image/png",
-  "created_at": "2026-11-12T10:28:09Z",
-  "original_filename": "icon-maskable-512.png",
+  "version": 1,
+  "asset_id": "5cde8d74-1528-4e1b-a0ac-e1df1a86d326",
   "project_id": "af14b332-2620-4b68-80be-e81e0c300a13",
-  "r2_key": "a/v1/af14b332-2620-4b68-80be-e81e0c300a13/69afaa96-b34d-444b-b856-67fc310a6a82/icon-maskable-512.png",
-  "size": 65708,
-  "url": "/__l5e/assets-v1/69afaa96-b34d-444b-b856-67fc310a6a82/icon-maskable-512.png",
-  "version": 1
+  "url": "/__l5e/assets-v1/5cde8d74-1528-4e1b-a0ac-e1df1a86d326/icon-maskable-512.png",
+  "r2_key": "a/v1/af14b332-2620-4b68-80be-e81e0c300a13/5cde8d74-1528-4e1b-a0ac-e1df1a86d326/icon-maskable-512.png",
+  "original_filename": "icon-maskable-512.png",
+  "size": 150550,
+  "content_type": "image/png",
+  "created_at": "2026-11-12T16:49:39Z"
 }
