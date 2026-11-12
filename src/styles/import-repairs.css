@@ -34,13 +34,16 @@ a.africaVotesChat { z-index: 2002; }
   font-size: 20px; line-height: 1.2; font-weight: 600; letter-spacing: 0;
 }
 @media (max-width: 540px) {
+  .library-homepage { --shelf-overhead: 16px; }
   .library-homepage .homepage-instruction { margin-block: 3px 6px; font-size: 17px; }
 }
 /* Budget all four shelves against the visible screen, not just its width.
    Artwork facts: books are 21% of shelf width, covers are 1.414x taller than wide,
    the plank image is 0.0957x its width and overlaps the books by 8px, so one shelf
-   stands 0.393 * width - 8 tall. Four shelves + heading + gaps = 1.571 * width + 12. */
-.library-homepage .bookshelf { width: min(100%, 850px, calc((100svh - var(--library-appbar-height) - 12px) * .6366)); margin-inline: auto; flex: none; }
+   stands 0.393 * width - 8 tall. Four shelves + heading + gaps must fit 100svh, and
+   --shelf-overhead is what the heading, gaps and padding cost on top of that. */
+.library-homepage { --shelf-overhead: 22px; }
+.library-homepage .bookshelf { width: min(100%, 850px, calc((100svh - var(--library-appbar-height) - var(--shelf-overhead)) * .6366)); margin-inline: auto; flex: none; }
 .library-homepage .covers { max-width: none; display: flex; justify-content: center; align-items: flex-end; gap: 1%; }
 .library-homepage .bookshelf .thumb { width: 21% !important; max-width: 175px; margin: 0; }
 .library-homepage .shelf-img { display: block; width: 100%; margin-top: -8px; }
