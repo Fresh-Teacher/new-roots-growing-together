@@ -1,4 +1,4 @@
-export const INSTALL_DELAY_MS = 5 * 60 * 1000;
+export const INSTALL_DELAY_MS = 40 * 1000;
 export const INSTALLED_KEY = 'ft-app-installed';
 export const BROWSING_KEY = 'ft-install-browsing-ms';
 export const COOKIE_CLOSED_EVENT = 'ft-cookie-notice-closed';

@@ -6,7 +6,7 @@ import { BROWSING_KEY, COOKIE_CLOSED_EVENT, INSTALL_DELAY_MS, INSTALLED_KEY, isI
 
 const BLOCK_KEY = "ft-install-blocked";
 const SNOOZE_KEY = "ft-install-snooze-until";
-const SNOOZE_DAYS = 3;
+const SNOOZE_DAYS = 7;
 const EXIT_MS = 420;
 
 interface BeforeInstallPromptEvent extends Event {
